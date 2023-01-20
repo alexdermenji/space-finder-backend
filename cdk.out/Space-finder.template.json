@@ -243,6 +243,33 @@
     "aws:cdk:path": "Space-finder/SpaceApi/Default/hello/GET/Resource"
    }
   },
+  "SpaceTableA2492A9A": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "KeySchema": [
+     {
+      "AttributeName": "SpaceId",
+      "KeyType": "HASH"
+     }
+    ],
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "SpaceId",
+      "AttributeType": "S"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    },
+    "TableName": "SpaceTable"
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "Space-finder/SpaceTable/Resource"
+   }
+  },
   "HelloLambdaServiceRoleE071F162": {
    "Type": "AWS::IAM::Role",
    "Properties": {
@@ -308,7 +335,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQ0U7DMAxFv2XvqVlB7L0b4g2BxgdMXmqK1yap6oRpqvrvOATE9uRzr5zrq9zDZg3rFZ6lsm1fDXyE+T2i7Y1ahxlH7jDSGS8w70liM7LZffgrbKwNyUfzROMQLo4U1b1SmtZR9gro05AmS1uUf/GbWfiF4mdos1VoMYxOz4eh7OlczIDu2CLMarzR5FiEgzfPyduYQe0/Xow8HFCEokCTh2rYJttTzB2WmxKvKY4pmp+93Jd9d9NNeRd8yyXYh5bgJHdf9QbqR6hXJ2GuJv0OdgT7Mr8BH8AOkWIBAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQQU/DMAyFf8vuWVhB7N4NcUOgwX1yE1O8NklVJ0xV1f+Os4DYTv7ek2M/515vN3qzgjOvje3WPTV6fo9gOiXWcYaBWoh4hknPB+RYD6T2n/4Ka2NC8lE94dCHyaGguFdKprWYvQLyNKTR4A74X/zOLPyC8SvYbBVaFIGT9aEvfVIX1YNrLOhZjDccHTFT8Oo5eRMziP3Hi7KTBxesXPYBTRlygUXxwxGYMbKucxGtd8l0GHO65Sbea4pDiurSly8h396kFt4Hb6ms9MGiPvHdd7XV1aOuVicmWo/yUeRQH0r9AT0Na6d8AQAA"
    },
    "Metadata": {
     "aws:cdk:path": "Space-finder/CDKMetadata/Default"
