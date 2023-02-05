@@ -16,6 +16,7 @@ export class SpaceStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
+    //create lambda function
     const helloLambda = new LambdaFunction(this, "HelloLambda", {
       runtime: Runtime.NODEJS_16_X,
       code: Code.fromAsset(join(__dirname, "..", "services", "hello")),
@@ -23,6 +24,7 @@ export class SpaceStack extends Stack {
     });
 
     //HelloLambda integration with API Gateway
+
     const helloLambdaIntegration = new LambdaIntegration(helloLambda);
     const helloLambdaResource = this.api.root.addResource("hello");
     helloLambdaResource.addMethod("GET", helloLambdaIntegration);

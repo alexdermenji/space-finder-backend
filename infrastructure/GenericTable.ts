@@ -7,7 +7,11 @@ export class GenericTable {
   private stack: Stack;
   private table: Table;
 
-  public constructor(name: string, primaryKey: string, stack: Stack) {
+  public constructor(
+    name: string,
+    primaryKey: string,
+    stack: Stack,
+  ) {
     this.name = name;
     this.primaryKey = primaryKey;
     this.stack = stack;
