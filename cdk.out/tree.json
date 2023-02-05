@@ -143,7 +143,7 @@
                           "Ref": "SpaceApi1B373D2B"
                         },
                         "deploymentId": {
-                          "Ref": "SpaceApiDeploymentA2B9E765b0fb24a158da0c22da3ab63ce4ae3d5c"
+                          "Ref": "SpaceApiDeploymentA2B9E765cd5edb554826b3d647e4c801648b4f4c"
                         },
                         "stageName": "prod"
                       }
@@ -211,7 +211,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "HelloLambda3D9C82D6",
+                                    "HelloLambdaNodeJs15DE45FE",
                                     "Arn"
                                   ]
                                 },
@@ -260,7 +260,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "HelloLambda3D9C82D6",
+                                    "HelloLambdaNodeJs15DE45FE",
                                     "Arn"
                                   ]
                                 },
@@ -327,7 +327,7 @@
                                         ":lambda:path/2015-03-31/functions/",
                                         {
                                           "Fn::GetAtt": [
-                                            "HelloLambda3D9C82D6",
+                                            "HelloLambdaNodeJs15DE45FE",
                                             "Arn"
                                           ]
                                         },
@@ -416,17 +416,17 @@
               "version": "2.60.0"
             }
           },
-          "HelloLambda": {
-            "id": "HelloLambda",
-            "path": "Space-finder/HelloLambda",
+          "HelloLambdaNodeJs": {
+            "id": "HelloLambdaNodeJs",
+            "path": "Space-finder/HelloLambdaNodeJs",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "Space-finder/HelloLambda/ServiceRole",
+                "path": "Space-finder/HelloLambdaNodeJs/ServiceRole",
                 "children": {
                   "ImportServiceRole": {
                     "id": "ImportServiceRole",
-                    "path": "Space-finder/HelloLambda/ServiceRole/ImportServiceRole",
+                    "path": "Space-finder/HelloLambdaNodeJs/ServiceRole/ImportServiceRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.60.0"
@@ -434,7 +434,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "Space-finder/HelloLambda/ServiceRole/Resource",
+                    "path": "Space-finder/HelloLambdaNodeJs/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -479,11 +479,11 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "Space-finder/HelloLambda/Code",
+                "path": "Space-finder/HelloLambdaNodeJs/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "Space-finder/HelloLambda/Code/Stage",
+                    "path": "Space-finder/HelloLambdaNodeJs/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.60.0"
@@ -491,7 +491,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "Space-finder/HelloLambda/Code/AssetBucket",
+                    "path": "Space-finder/HelloLambdaNodeJs/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.60.0"
@@ -505,7 +505,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "Space-finder/HelloLambda/Resource",
+                "path": "Space-finder/HelloLambdaNodeJs/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -513,16 +513,21 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "ae5f6930c8e7d29f0f8f6e8dce0b9cea33faf4eb95fc5d689c7ef6c7d9cc60d4.zip"
+                      "s3Key": "4ff3f51eec2af3d615e46c86bec04a5058b62dff726a58d009f6023a749838e5.zip"
                     },
                     "role": {
                       "Fn::GetAtt": [
-                        "HelloLambdaServiceRoleE071F162",
+                        "HelloLambdaNodeJsServiceRole21CE02A0",
                         "Arn"
                       ]
                     },
-                    "handler": "hello.main",
-                    "runtime": "nodejs16.x"
+                    "environment": {
+                      "variables": {
+                        "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+                      }
+                    },
+                    "handler": "index.handler",
+                    "runtime": "nodejs14.x"
                   }
                 },
                 "constructInfo": {
@@ -532,7 +537,7 @@
               }
             },
             "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
               "version": "2.60.0"
             }
           },
